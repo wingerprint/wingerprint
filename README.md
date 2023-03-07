@@ -4,7 +4,7 @@ Windows system info and escalation paths:
 
 - [x] Users
 - [x] Privilieges
-  - [x]​AlwaysInstallElevated
+  - [x] ​AlwaysInstallElevated
 - [x] Antivirus
 - [x] Unattended files
 - [x] VM detection

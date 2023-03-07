@@ -21,6 +21,21 @@ except:
     pass
 
 
+# Users
+
+try:
+    print("\n\n## Users\n")
+    for user in wmi.Win32_UserAccount():
+        if not user.Disabled:
+            print(f"- {os.path.normpath(user.Caption)}")
+            print(f"  {user.SID}")
+            if not user.PasswordRequired:
+                print("  ⚠️ No password")
+            elif user.PasswordChangeable:
+                print("  ⚠️ Password is changeable")
+except:
+    pass
+
 # AV
 
 av_processes = {
@@ -194,17 +209,17 @@ if len(av_found):
 # Unattended files
 
 unattended_filepaths = [
-    os.path.normpath(windir + "\\sysprep\\sysprep.xml"),
-    os.path.normpath(windir + "\\sysprep\\sysprep.inf"),
-    os.path.normpath(windir + "\\sysprep.inf"),
-    os.path.normpath(windir + "\\panther\\unattended.xml"),
+    os.path.normpath(windir + "\\..\\unattend.inf"),
+    os.path.normpath(windir + "\\..\\unattend.txt"),
     os.path.normpath(windir + "\\panther\\unattend.xml"),
     os.path.normpath(windir + "\\panther\\unattend\\unattend.xml"),
     os.path.normpath(windir + "\\panther\\unattend\\unattended.xml"),
+    os.path.normpath(windir + "\\panther\\unattended.xml"),
+    os.path.normpath(windir + "\\sysprep.inf"),
+    os.path.normpath(windir + "\\sysprep\\sysprep.inf"),
+    os.path.normpath(windir + "\\sysprep\\sysprep.xml"),
     os.path.normpath(windir + "\\system32\\sysprep\\unattend.xml"),
     os.path.normpath(windir + "\\system32\\sysprep\\unattended.xml"),
-    os.path.normpath(windir + "\\..\\unattend.txt"),
-    os.path.normpath(windir + "\\..\\unattend.inf"),
 ]
 
 unattended_files_found = []
@@ -217,6 +232,5 @@ if len(unattended_files_found):
     print("\n\n## Unattended files\n")
     for file in unattended_files_found:
         print(f"- {file}")
-    print(os.path.normpath(windir + "\\..\\unattend.inf"),)
 
 print()

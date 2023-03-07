@@ -2,10 +2,10 @@
 
 Windows system info and escalation paths:
 
+- [x] Users
 - [x] Antivirus processes
 - [x] Unattended files
 - [x] VM detection
-- [ ] Logged in users
 - [ ] Passwords in PowerShell history
 - [ ] ​AlwaysInstallElevated check
 - [ ] Vulnerable applications

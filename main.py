@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
-import os
+from os import environ
+from os.path import isfile, normcase, normpath
+from winreg import HKEY_LOCAL_MACHINE, HKEY_CURRENT_USER, OpenKey, QueryValueEx
 import wmi as wmilib
 
 
 print("# WINGERPRINT\n")
 
-windir = os.path.normcase(os.environ["WINDIR"])
+windir = normcase(environ["WINDIR"])
 wmi = wmilib.WMI()
 
 
@@ -27,7 +29,7 @@ try:
     print("\n\n## Users\n")
     for user in wmi.Win32_UserAccount():
         if not user.Disabled:
-            print(f"- {os.path.normpath(user.Caption)}")
+            print(f"- {normpath(user.Caption)}")
             print(f"  {user.SID}")
             if not user.PasswordRequired:
                 print("  ⚠️ No password")
@@ -35,6 +37,29 @@ try:
                 print("  ⚠️ Password is changeable")
 except:
     pass
+
+
+# Privileges
+
+privileges = []
+
+# Privileges > AlwaysInstallElevated
+try:
+    with OpenKey(HKEY_CURRENT_USER, "Software\\Policies\\Microsoft\\Windows\\Installer") as key:
+        val, _ = QueryValueEx(key, "AlwaysInstallElevated")
+        if val == 1:
+            with OpenKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Policies\\Microsoft\\Windows\\Installer") as key:
+                val, _ = QueryValueEx(key, "AlwaysInstallElevated")
+                if val == 1:
+                    privileges.append("⚠️ AlwaysInstallElevated")
+except:
+    pass
+
+if len(privileges):
+    print("\n\n## Privileges\n")
+    for priv in privileges:
+        print(f"- {priv}")
+
 
 # AV
 
@@ -209,23 +234,23 @@ if len(av_found):
 # Unattended files
 
 unattended_filepaths = [
-    os.path.normpath(windir + "\\..\\unattend.inf"),
-    os.path.normpath(windir + "\\..\\unattend.txt"),
-    os.path.normpath(windir + "\\panther\\unattend.xml"),
-    os.path.normpath(windir + "\\panther\\unattend\\unattend.xml"),
-    os.path.normpath(windir + "\\panther\\unattend\\unattended.xml"),
-    os.path.normpath(windir + "\\panther\\unattended.xml"),
-    os.path.normpath(windir + "\\sysprep.inf"),
-    os.path.normpath(windir + "\\sysprep\\sysprep.inf"),
-    os.path.normpath(windir + "\\sysprep\\sysprep.xml"),
-    os.path.normpath(windir + "\\system32\\sysprep\\unattend.xml"),
-    os.path.normpath(windir + "\\system32\\sysprep\\unattended.xml"),
+    normpath(windir + "\\..\\unattend.inf"),
+    normpath(windir + "\\..\\unattend.txt"),
+    normpath(windir + "\\panther\\unattend.xml"),
+    normpath(windir + "\\panther\\unattend\\unattend.xml"),
+    normpath(windir + "\\panther\\unattend\\unattended.xml"),
+    normpath(windir + "\\panther\\unattended.xml"),
+    normpath(windir + "\\sysprep.inf"),
+    normpath(windir + "\\sysprep\\sysprep.inf"),
+    normpath(windir + "\\sysprep\\sysprep.xml"),
+    normpath(windir + "\\system32\\sysprep\\unattend.xml"),
+    normpath(windir + "\\system32\\sysprep\\unattended.xml"),
 ]
 
 unattended_files_found = []
 
 for path in unattended_filepaths:
-    if os.path.isfile(path):
+    if isfile(path):
         unattended_files_found.append(path)
 
 if len(unattended_files_found):

@@ -3,12 +3,13 @@
 Windows system info and escalation paths:
 
 - [x] Users
-- [x] Antivirus processes
+- [x] Privilieges
+  - [x]​AlwaysInstallElevated
+- [x] Antivirus
 - [x] Unattended files
 - [x] VM detection
-- [ ] Passwords in PowerShell history
-- [ ] ​AlwaysInstallElevated check
 - [ ] Vulnerable applications
 - [ ] DLL hijacking
+- [ ] Passwords in PowerShell history
 
 Output is standard Markdown.

@@ -14,7 +14,7 @@ Windows system info and escalation paths:
 
 Output is standard Markdown:
 
-```md
+```mkd
 # WINGERPRINT
 
 - VM environment

@@ -5,7 +5,7 @@ Windows system info and escalation paths:
 - [x] Environment
   - [x] VM detection
 - [x] Users
-- [x] Privilieges
+- [x] Privileges
   - [x] ​AlwaysInstallElevated
   - [ ] https://github.com/gtworek/Priv2Admin
 - [x] Antivirus

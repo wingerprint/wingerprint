@@ -19,7 +19,8 @@ Output is standard Markdown:
 ```mkd
 # WINGERPRINT
 
-# Environment
+
+## Environment
 
 - VM detected (QUEMU ARM Virtual Machine)
 

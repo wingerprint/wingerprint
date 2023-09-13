@@ -9,7 +9,7 @@ import (
 	"golang.org/x/sys/windows"
 )
 
-// See: https://learn.microsoft.com/en-us/windows/win32/api/iads/ne-iads-ads_user_flag_enum
+// See https://learn.microsoft.com/en-us/windows/win32/api/iads/ne-iads-ads_user_flag_enum
 const (
 	ADS_UF_SCRIPT                                 = 0x1
 	ADS_UF_ACCOUNTDISABLE                         = 0x2
@@ -38,7 +38,7 @@ const (
 	USER_PRIV_ADMIN = 2
 )
 
-// See: https://learn.microsoft.com/en-us/windows/win32/api/lmaccess/ns-lmaccess-user_info_2
+// See https://learn.microsoft.com/en-us/windows/win32/api/lmaccess/ns-lmaccess-user_info_2
 type USER_INFO_2 struct {
 	Usri2_name           *uint16
 	Usri2_password       *uint16

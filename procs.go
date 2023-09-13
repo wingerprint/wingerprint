@@ -289,3 +289,35 @@ func printAV() {
 	}
 	fmt.Print("\n\n")
 }
+
+// Analysis tools that may be avoid.
+var procsBlacklist = map[string]struct{}{
+	"dfsserv":        {},
+	"fiddler":        {},
+	"gemu-ga":        {},
+	"httpdebuggerui": {},
+	"ida64":          {},
+	"joeboxcontrol":  {},
+	"joeer":          {},
+	"ksdumper":       {},
+	"ksdumperclient": {},
+	"ollydbg":        {},
+	"pestudio":       {},
+	"pr1_tools":      {},
+	"prl_cc":         {},
+	"processhacker":  {},
+	"regedit":        {},
+	"taskmgr":        {},
+	"vboxservice":    {},
+	"vboxtray":       {},
+	"vgauthservice":  {},
+	"vmacthlp":       {},
+	"vmsrvc":         {},
+	"vmtoolsd":       {},
+	"vmusrvc":        {},
+	"vmwaretray":     {},
+	"vmwareuser":     {},
+	"wireshark":      {},
+	"x32dbg":         {},
+	"x96dbg":         {},
+}
